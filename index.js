@@ -14,11 +14,13 @@ const {logger} = require("./middleware/logger")
 app.use(cors({
     origin:"*"
 }))
+
+app.use("/user",userRouter)
 app.use("/",(req,res)=>{
     res.json("WELCOME")
 })
 
- app.use("/user",userRouter)
+
 app.use(authenticate)
 app.use("/note", noteRouter)
 app.use(logger)
