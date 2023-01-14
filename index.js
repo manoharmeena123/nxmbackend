@@ -15,7 +15,7 @@ app.use(cors({
     origin:"*"
 }))
 app.use("/",(req,res)=>{
-    res.send("WELCOME")
+    res.json("WELCOME")
 })
 
  app.use("/user",userRouter)
