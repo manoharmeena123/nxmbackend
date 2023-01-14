@@ -14,6 +14,10 @@ const {logger} = require("./middleware/logger")
 app.use(cors({
     origin:"*"
 }))
+app.use("/",(req,res)=>{
+    res.send("WELCOME")
+})
+
  app.use("/user",userRouter)
 app.use(authenticate)
 app.use("/note", noteRouter)
@@ -22,9 +26,6 @@ app.use(logger)
 
 //GET WELCOME=========================================>
 
-app.use("/",(req,res)=>{
-    res.send("WELCOME")
-})
 
 //Server==============================================>
 app.listen(process.env.port,async()=>{
