@@ -1,12 +1,18 @@
 const express = require("express")
 const noteRouter = express.Router()
 const {NoteModel} = require("../model/note.model")
-const { authenticate } = require("../middleware/auth");
+// const { authenticate } = require("../middleware/auth");
 const {logger} = require("../middleware/logger")
-noteRouter.use(logger)
+
 noteRouter.get("/get",async(req,res)=>{
-    const data = await NoteModel.find()
-    res.send(data)
+    try {
+          const data = await NoteModel.find()
+    res.json(data)
+        
+    } catch (error) {
+        res.json(error)
+    }
+  
 })
 
 
@@ -67,7 +73,7 @@ noteRouter.delete("/delete/:Id",async(req,res)=>{
         res.send("error in Delete")
     }
 })
-
+noteRouter.use(logger)
 module.exports ={
     noteRouter
 }

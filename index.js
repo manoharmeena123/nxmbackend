@@ -10,20 +10,20 @@ const {UserModel} = require("./model/user.model")
 const {noteRouter} = require("./routes/note.route");
 const {userRouter} = require("./routes/user.route")
 const { authenticate } = require("./middleware/auth");
-const {logger} = require("./middleware/logger")
+// const {logger} = require("./middleware/logger")
 app.use(cors({
     origin:"*"
 }))
-
-app.use("/user",userRouter)
-app.use("/",(req,res)=>{
+app.get("/",(req,res)=>{
     res.json("WELCOME")
 })
+
+app.use("/user",userRouter)
 
 
 app.use(authenticate)
 app.use("/note", noteRouter)
-app.use(logger)
+
 
 
 //GET WELCOME=========================================>
